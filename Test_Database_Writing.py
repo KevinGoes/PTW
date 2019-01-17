@@ -16,15 +16,15 @@ except:
 
 
 def write_to_db(containernummer, volume):
-    query = "INSERT INTO container(containernummer, volume) VALUES (%s, %s)"
-    data = (containernummer, volume)
+    query = "UPDATE container SET volume =  %s WHERE containernummer = %s"
+    data = (volume, containernummer)
     c.execute(query, data)
     conn.commit()
     #data = c.fetchall()
     #print(data)
 
 
-write_to_db("containernummer", "volume")
+write_to_db(101, 15)
 
 c.close()
 conn.close()
