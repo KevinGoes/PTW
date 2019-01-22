@@ -14,14 +14,17 @@ except:
     print("I am unable to connect to the database")
 
 
-def write_to_db(containernummer, volume):
-    query = "UPDATE container SET volume =  %s WHERE containernummer = %s"
-    data = (volume, containernummer)
-    c.execute(query, data)
-    conn.commit()
+def get_navigation():
+    c.execute("SELECT * FROM container")
+    link = 'http://www.google.es/maps/dir/'
+    for row in c.fetchall():
+        adress = row[2]
+        adress = adress.replace(' ', '')
+        link = link + adress + '/'
+    return link
 
 
-write_to_db(101, 65)
-
+print(get_navigation())
 c.close()
 conn.close()
+

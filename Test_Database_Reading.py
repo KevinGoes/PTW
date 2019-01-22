@@ -6,7 +6,6 @@ try:
                             "host='dumbo.db.elephantsql.com' "
                             "password='OQBOtTdWyf5xbdDqwGFyi_T_rQ2KcjNw'")
     c = conn.cursor()
-    # Print PostgreSQL version
     c.execute("SELECT version();")
     record = c.fetchone()
     print("You are connected to - ", record, "\n")
@@ -17,13 +16,10 @@ except:
 
 def read_from_db():
     c.execute("SELECT * FROM container")
-    #data = c.fetchall()
-    #print(data)
     for row in c.fetchall():
         print(row)
 
 
 read_from_db()
-
 c.close()
 conn.close()
