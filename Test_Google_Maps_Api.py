@@ -1,4 +1,5 @@
 import psycopg2
+import webbrowser
 
 try:
     conn = psycopg2.connect("dbname='lpdstrtn' "
@@ -32,7 +33,7 @@ def get_places():
     return adresses
 
 
-print(get_navigation(get_places()))
+webbrowser.open(get_navigation(get_places()))
 c.close()
 conn.close()
 
