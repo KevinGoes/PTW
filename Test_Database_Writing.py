@@ -21,7 +21,7 @@ def write_to_db(containernummer, volume):
     conn.commit()
 
 
-write_to_db(101, 65)
+write_to_db(101, 60)
 
 c.close()
 conn.close()

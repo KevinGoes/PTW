@@ -14,17 +14,25 @@ except:
     print("I am unable to connect to the database")
 
 
-def get_navigation():
-    c.execute("SELECT * FROM container")
-    link = 'http://www.google.es/maps/dir/'
-    for row in c.fetchall():
-        adress = row[2]
+def get_navigation(adresses):
+    link = 'http://www.google.es/maps/dir/Isotopenweg3/'
+    for adress in adresses:
         adress = adress.replace(' ', '')
         link = link + adress + '/'
+    link = link + 'Isotopenweg3/'
     return link
 
 
-print(get_navigation())
+def get_places():
+    c.execute("SELECT * FROM container")
+    adresses = []
+    for row in c.fetchall():
+        if row[1] >= 80:
+            adresses.append(row[2])
+    return adresses
+
+
+print(get_navigation(get_places()))
 c.close()
 conn.close()
 
